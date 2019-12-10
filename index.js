@@ -11,7 +11,8 @@ function render(data){
       // tickNumber = number=>d3.format(".3s")(number).replace("G","B")
       yValue = d=>d.weight ,
       barwidth = width - margin.left -margin.right,
-      barHeight = height - margin.top - margin.bottom;
+      barHeight = height - margin.top - margin.bottom,
+      radius = 9;
 
 
       const x = d3.scaleLinear()
@@ -33,11 +34,13 @@ function render(data){
                   .append("circle")
                   .attr("cx",x(10))
                   .attr("cy",122)
-                  .attr("r",16)
+                  .attr("r",radius)
                   .on("mouseover",function(d,i){
-                    tooltip.html(`<div><p>Weight ${d.weight} <br><b>horsepower:</b><i>${d.horsepower}</></p> </div>`)
-                    .style("top",  (d3.event.pageY ) + "px")
-                    .style("right",(d3.event.pageX )+ "px")
+
+
+                    tooltip.html(`<div><p>Weight ${d.weight} <br><b>horsepower:</b><i>${d.horsepower}</i></p> </div>`)
+                    .style("top",  (d3.event.pageY -114) + "px")
+                    .style("left",(d3.event.pageX -20)+ "px")
 
                   })
                   .on("mouseout",function(d,i){
@@ -54,7 +57,7 @@ function render(data){
       let yGroup = g.append("g").call(yAxis).attr("class","yAxis")
       xGroup.select(".domain").remove()
       yGroup.selectAll('.domain').remove()
-      
+
 
 }
 
