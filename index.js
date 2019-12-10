@@ -52,53 +52,17 @@ function render(data){
          .attr("cy",d=>y(yValue(d)))
       g.append("text").attr("x",innerWidth/2 - 100).attr("y",-12).text("Weight vs Horsepower").attr("text-anchor","middle").attr("class","title")
       g.append("text").attr("x",innerWidth/2 - 100).attr("y",barHeight+80).text("Horsepower").attr("text-anchor","middle").attr("class","bottom")
-      g.append("text").attr("x",190).attr("y",131).text("Weight").attr("text-anchor","middle").attr("class","left").attr("transform","rotate(90)")
+      g.append("text").attr("x",barHeight/10 +280 ).attr("y",100).text("Weight").attr("text-anchor","middle").attr("class","left").attr("transform","rotate(90)")
       let xGroup = g.append("g").call(xAxis).attr("transform",`translate(0,${barHeight})`)
       let yGroup = g.append("g").call(yAxis).attr("class","yAxis")
       xGroup.select(".domain").remove()
       yGroup.selectAll('.domain').remove()
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 d3.csv("datas.csv").then(data=>{
    data.forEach(d => {
      d.horsepower = +d.horsepower
      d.weight = +d.weight
-
    });
    render(data)
   })
